@@ -1,0 +1,28 @@
+{
+  "name": "esbuild-plugin-compressor",
+  "version": "1.0.0",
+  "description": "A compression plugin for esbuild to gzip or brotli compress files after building.",
+  "main": "index.mjs",
+  "types": "index.d.ts",
+  "homepage": "https://github.com/nrk9819/esbuild-plugin-compressor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nrk9819/esbuild-plugin-compressor.git"
+  },
+  "keywords": [
+    "esbuild",
+    "esbuild plugin",
+    "compress",
+    "compression",
+    "brotli",
+    "gzip"
+  ],
+  "author": "nrk9819",
+  "license": "ISC",
+  "peerDependencies": {
+    "esbuild": "^0.17.19"
+  },
+  "dependencies": {
+    "fs-extra": "^11.1.1"
+  }
+}
