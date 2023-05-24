@@ -11,20 +11,19 @@ export const compressor = options => ({
   name: 'compressor-plugin',
   setup(build) {
     build.initialOptions.metafile = true;
-    console.log(build.initialOptions.outputFiles);
     build.onEnd(async result => {
       const outputs = result.metafile.outputs;
       const outputExt =
         options?.compressType?.toLowerCase() === 'brotli' ? '.br' : '.gz';
       const outdir = options?.outdir || build.initialOptions.outdir;
 
-      //process css and js files
-      for (const file in outputs) {
-        const fileType = file.substring(file.lastIndexOf('.') + 1);
+      //process files
+      for (const filePath in outputs) {
+        const fileType = filePath.substring(filePath.lastIndexOf('.') + 1);
 
         if (options?.fileTypes?.includes(fileType)) {
-          const fileName = file.split('/').at(-1);
-          const content = await readFile(file, 'utf8');
+          const fileName = filePath.split('/').at(-1);
+          const content = await readFile(filePath, 'utf8');
           const compressedContent = await compressContent(content, outputExt);
           const compressedFileName = `${fileName}${outputExt}`;
           const compressedFilePath = join(outdir, compressedFileName);
@@ -34,8 +33,12 @@ export const compressor = options => ({
 
           // delete the original file
           if (options?.deleteOrigin) {
-            await unlink(file);
+            await unlink(filePath);
           }
+
+          console.log(
+            `Successfully compressed ${filePath} to ${compressedFilePath}`
+          );
         }
       }
     });

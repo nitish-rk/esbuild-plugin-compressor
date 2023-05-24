@@ -1,6 +1,6 @@
 {
   "name": "esbuild-plugin-compressor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A compression plugin for esbuild to gzip or brotli compress files after building.",
   "main": "index.mjs",
   "types": "index.d.ts",
